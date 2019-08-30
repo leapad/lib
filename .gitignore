@@ -1,0 +1,14 @@
+# ignore files
+.idea
+.buildpath
+.project
+.settings
+.DS_Store
+Thumbs.db
+/.vagrant
+/.idea
+/forpc/web/data
+/yii
+/yii_test
+/yii_test.bat
+
