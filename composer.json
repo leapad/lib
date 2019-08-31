@@ -1,7 +1,12 @@
 {
     "name": "leapad/lib",
-    "description": "飞跃家财团队核心库",
+    "description": "飞跃佳才团队核心库",
     "type": "library",
     "minimum-stability": "dev",
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "leapad\\lib\\": "lib"
+        }
+    },
 }
