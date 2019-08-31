@@ -1,12 +1,13 @@
 <?php
 /**
+ * 常用函数
  * Created by PhpStorm.
  * User: 赵佳
  * Date: 2019/8/30
  * Time: 18:31
  */
 
-namespace leapad\lib
+namespace leapad\lib;
 
 class Common{
 
