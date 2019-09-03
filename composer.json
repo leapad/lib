@@ -1,6 +1,8 @@
 {
     "name": "leapad/lib",
     "description": "飞跃佳才团队核心库",
+    "keywords": ["leapad", "lib"],
+    "homepage": "http://github.com/leapad/lib",
     "type": "library",
     "minimum-stability": "dev",
     "require": {
@@ -8,7 +10,7 @@
     },
     "autoload": {
         "psr-4": {
-            "leapad\\lib\\": ""
+            "leapad\\lib\\": "lib"
         }
     }
 }
