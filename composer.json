@@ -8,7 +8,7 @@
     },
     "autoload": {
         "psr-4": {
-            "leapad\\lib\\": ""
+            "leapad\\lib\\": "lib"
         }
     }
 }
