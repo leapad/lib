@@ -82,6 +82,67 @@ class File{
     }
 
     /**
+     * 下载文件
+     * 有的时候下载文件需要登录状态，本函数便是为此服务。把登录状态通过COOKIE传过来即可,若不传只能下载不需要身份认证的普通文件
+     * @author YUE
+     * @param $urlFile 网络文件URL
+     * @param $saveFile 保存文件
+     * @param string $cookieStr cookies的字符串，例如 'id=1;loginUid=5;password=abc'
+     * @return bool
+     */
+    public static function download($urlFile, $saveFile, $cookieStr = ''){
+
+        //参数判断
+        if(empty($urlFile)){
+            throw new \RuntimeException("URL文件参数不能为空");
+            return false;
+        }
+
+        //读取资源
+        if(!empty($cookieStr)){
+            $opts = ['http' => ['header'=> 'Cookie:'.@$cookieStr.'']];
+            $context = stream_context_create($opts);
+            $file = file_get_contents($urlFile, false, $context);
+        }else{
+            $file = file_get_contents($urlFile);
+        }
+
+        //判断资源
+        if(empty($file)){
+            throw new \RuntimeException("得不到网络资源");
+            return false;
+        }
+
+        //判断目录
+        $saveDir = dirname($saveFile);
+        if(empty($saveDir)){
+            throw new \RuntimeException("无法从保存文件中获取保存目录");
+            return false;
+        }
+
+        //创建保存目录
+        if(!file_exists($saveDir)){
+            if(!mkdir ($saveDir,0777,true)){
+                throw new \RuntimeException("保存目录创建失败");
+            }
+        }
+
+        //判断目录是否可写
+        if(!is_writable($saveDir)){
+            throw new \RuntimeException("目录不可写");
+            return false;
+        }
+
+        //保存文件
+        if(!file_put_contents($saveFile, $file)){
+            throw new \RuntimeException("文件保存失败");
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * 随机字符串
      * @param $len
      * @return string
