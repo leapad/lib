@@ -8,6 +8,40 @@ namespace leapad\lib;
 class File{
 
     /**
+     * 保存二进制文件
+     * @param $saveFile 保存文件路径
+     * @param $bin 二进制内容
+     * @return bool
+     */
+    public static function saveByBin($saveFile, $bin){
+        //判断目录
+        $saveDir = dirname($saveFile);
+        if(empty($saveDir)){
+            throw new \RuntimeException("无法从保存文件中获取保存目录");
+            return false;
+        }
+
+        //创建保存目录
+        if(!file_exists($saveDir)){
+            if(!mkdir ($saveDir,0777,true)){
+                throw new \RuntimeException("保存目录创建失败");
+            }
+        }
+
+        //判断目录是否可写
+        if(!is_writable($saveDir)){
+            throw new \RuntimeException("目录不可写");
+            return false;
+        }
+
+        //保存文件
+        if(!file_put_contents($saveFile, $bin)){
+            throw new \RuntimeException("文件保存失败");
+            return false;
+        }
+    }
+
+    /**
      * 保存文件
      * @param $filename
      * @param $data
