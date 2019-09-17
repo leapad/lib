@@ -8,12 +8,14 @@ namespace leapad\lib;
 class File{
 
     /**
-     * 保存二进制文件
-     * @param $saveFile 保存文件路径
-     * @param $bin 二进制内容
+     * 保存文件
+     * 可自动创建目录
+     * @param $saveFile 保存文件的路径，包含文件名
+     * @param $data 可以是二进制，也可以是文本
      * @return bool
      */
-    public static function saveByBin($saveFile, $bin){
+    public static function saveByData($saveFile, $data){
+
         //判断目录
         $saveDir = dirname($saveFile);
         if(empty($saveDir)){
@@ -25,6 +27,7 @@ class File{
         if(!file_exists($saveDir)){
             if(!mkdir ($saveDir,0777,true)){
                 throw new \RuntimeException("保存目录创建失败");
+                return false;
             }
         }
 
@@ -35,31 +38,9 @@ class File{
         }
 
         //保存文件
-        if(!file_put_contents($saveFile, $bin)){
+        if(!file_put_contents($saveFile, $data)){
             throw new \RuntimeException("文件保存失败");
             return false;
-        }
-    }
-
-    /**
-     * 保存文件
-     * @param $filename
-     * @param $data
-     * @return bool
-     */
-    public static function saveByData($filename, $data){
-
-        //创建保存目录
-        $saveDir = dirname($filename);
-        if(!file_exists($saveDir)){
-            if(!mkdir ($saveDir,0777,true)){
-                throw new \RuntimeException("保存目录创建失败");
-            }
-        }
-
-        //保存文件
-        if(!file_put_contents($filename, $data)){
-            throw new \RuntimeException("HTML简历保存失败");
         }
 
         return true;
