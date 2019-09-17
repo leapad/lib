@@ -10,9 +10,11 @@ class File{
     /**
      * 保存文件
      * 可自动创建目录
-     * @param $saveFile 保存文件的路径，包含文件名
+     * @param $saveFile 要保存文件的完整路径，包含文件名
      * @param $data 可以是二进制，也可以是文本
      * @return bool
+     * @author Yue
+     * @date 2019 09 17
      */
     public static function saveByData($saveFile, $data){
 
