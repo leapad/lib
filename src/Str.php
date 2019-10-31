@@ -13,7 +13,7 @@ class Str{
      * @param string $pattern 生成字符串体,默认数字+大写字母
      * @return string
      */
-    function rand($len, $pattern = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"){
+    public static function rand($len, $pattern = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"){
         $randstr = "";
         for($i = 0; $i < $len; $i++) {
             $randstr .= $pattern[mt_rand(0,(strlen($pattern)-1))];
